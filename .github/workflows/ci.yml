@@ -38,6 +38,7 @@ jobs:
       - run: uv run ruff check --fix
 
   ty:
+    needs: [ruff, ruff-formater]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
@@ -50,6 +51,7 @@ jobs:
         continue-on-error: true
 
   pytest:
+    needs: [ty]
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
